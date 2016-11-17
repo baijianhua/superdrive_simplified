@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:styles="clr-namespace:SuperDrive.Core.UI.Styles;assembly=SuperDrive.Core.UI"
+             xmlns:controls="clr-namespace:SuperDrive.Core.UI.Controls;assembly=SuperDrive.Core.UI"
+             x:Class="SuperDrive.Core.UI.App"
+             >
+        <Application.Resources>
+                <!-- Application resource dictionary -->
+                <ResourceDictionary  MergedWith="styles:CommonStyle">
+                        <!--当前版本的实现有Bug。只能通过DynamicResource才能找到这里面定义的-->
+                        <Style TargetType="Button">
+                                <Setter Property="BackgroundColor" Value="Silver" />
+                        </Style>
+                        <Style x:Key="LinkButton" TargetType="Button">
+                                <Setter Property="BackgroundColor" Value="Transparent" />
+                                <Setter Property="HorizontalOptions" Value="End" />
+                        </Style>
+                        <Style x:Key="Toolbar" TargetType="Layout">
+                                <Setter Property="Padding" Value="3,0,3,3" />
+                        </Style>
+                </ResourceDictionary>
+        </Application.Resources>
+</Application>

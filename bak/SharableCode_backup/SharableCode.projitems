@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>83c627df-c9e6-4a03-b66d-f38b5d739d96</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>SharableCode</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)ChannelManagerImpl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DirItemImpl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FileHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FileItemImpl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LANDiscoverer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TcpChannelImpl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UDPImpl.cs" />
+  </ItemGroup>
+</Project>

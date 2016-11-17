@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<controls:ToolbarContentView   xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:SuperDrive.Core.UI.Controls;assembly=SuperDrive.Core.UI"
+             xmlns:ui="clr-namespace:SuperDrive.Core.UI;assembly=SuperDrive.Core.UI"
+             x:Class="SuperDrive.Core.UI.Pages.SettingPage">
+        <StackLayout Orientation="Vertical">
+                <StackLayout x:Name="ToolBar" Orientation="Horizontal" Style="{StaticResource Toolbar}">
+                        <controls:ImageButton x:Name="BtnReturn" 
+                                              Source="{controls:ImageLoader back_128.png}"
+                                              Style="{DynamicResource ButtonStyleTest}"
+                                              Text="{ui:Nl BtnReturn}" 
+                                              Clicked="BtnReturn_OnClicked"
+                                              />
+                 </StackLayout>
+                
+                <Label Text="This is Setting Page"></Label>
+                <Button Text="Open" Clicked="Button_OnClicked"></Button>
+		<controls:ImageButton x:Name="BtnReturn1"
+                                              Source="{controls:ImageLoader back_128.png}"
+                                              Style="{DynamicResource ButtonStyleTest}"
+                                              Text="{ui:Nl BtnReturn}"
+                                              Clicked="BtnReturn_OnClicked"
+                                              />
+         </StackLayout>
+</controls:ToolbarContentView>

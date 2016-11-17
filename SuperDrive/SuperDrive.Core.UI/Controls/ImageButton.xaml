@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mr:ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mr="clr-namespace:MR.Gestures;assembly=MR.Gestures"
+             x:Class="SuperDrive.Core.UI.Controls.ImageButton"
+             >
+        <mr:Frame x:Name="FrameBorder"
+                  OutlineColor="Gray"
+                  Tapped="FrameBorder_OnTapped"
+                  Padding="3"
+            >
+                <StackLayout Orientation="Horizontal" Padding="0" Spacing="0">
+                        <Image x:Name="Image" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,2,2,2"/>
+                        <Label x:Name="TextLabel" HorizontalOptions="Center" Margin="0,0,0,0" VerticalOptions="Center"/>
+                </StackLayout>
+        </mr:Frame>
+</mr:ContentView>

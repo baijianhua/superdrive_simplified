@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<AbsoluteLayout xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:controls="clr-namespace:SuperDrive.Core.UI.Controls;assembly=SuperDrive.Core.UI"
+                xmlns:pages="clr-namespace:SuperDrive.Core.UI.Pages;assembly=SuperDrive.Core.UI"
+                x:Class="SuperDrive.Core.UI.Pages.MainPageReal"
+		>
+
+
+        <StackLayout Orientation="Horizontal" x:Name="OperationBar" Style="{StaticResource Toolbar}">
+                <BoxView x:Name="ToolbarSeperator" BackgroundColor="Red"
+                               WidthRequest="1"
+                               Margin="3,0,3,0"></BoxView>
+                <!--user logon / setting button-->
+                <StackLayout x:Name="DeviceList"
+                                Orientation="Horizontal">
+                        <!--devices-->
+                        <!--<controls:ImageButton
+        Text="Twiter"
+        Source="{controls:ImageLoader phone64.png}"
+        Style="{DynamicResource ButtonStyleTest}"/>-->
+                </StackLayout>
+
+                <controls:ImageButton
+                        x:Name="BtnAddDevice"
+                        Text=""
+                        Source="{controls:ImageLoader phone_add_64.png}"
+                        Style="{DynamicResource ButtonStyleTest}"
+                        Clicked="BtnAddDevice_OnClicked"
+                        />
+
+                <controls:ImageButton
+                        x:Name="BtnLogin"
+                        Text=""
+                        Source="{controls:ImageLoader user64.png}"
+                        Style="{DynamicResource ButtonStyleTest}"
+                        Clicked="Login_Clicked"
+                        />
+                <controls:ImageButton
+                        Text=""
+                        x:Name="BtnSetting"
+                        Source="{controls:ImageLoader settings_128.png}"
+                        Style="{DynamicResource ButtonStyleTest}"
+                        Clicked="Settings_Clicked"
+                        />
+        </StackLayout>
+        <Frame x:Name="ContentFrame" Padding="0" Margin="0"></Frame>
+        <!--<Frame x:Name="ContentFrame" Padding="0" Margin="0"/>--> 
+        <!--用Frame不行，切换页面时会发生下面异常。原因不清楚。而且用Frame不好实现隐藏缓冲的效果。
+        发生了 System.NullReferenceException
+          HResult=-2147467261
+          Message=Object reference not set to an instance of an object.
+          Source=MR.Gestures.UWP
+          StackTrace:
+               at MR.Gestures.UWP.UWPGestureHandler..ctor(IGestureAwareControl element, FrameworkElement view, IGestureListener listener)
+          InnerException: 
+        -->
+
+        <StackLayout x:Name="TaskListFrame"
+                                     Orientation="Horizontal"
+                                     HorizontalOptions="StartAndExpand"
+                                     >
+        </StackLayout>
+</AbsoluteLayout>

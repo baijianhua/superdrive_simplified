@@ -1,0 +1,61 @@
+"frameworks": {
+    "netstandard1.4": {
+      "imports": "portable-net45+win8+wpa81+wp8"
+    }
+  }
+
+
+http://www.easyicon.net/language.en/1073258-music_icon.html
+
+
+关于加载图片，内容和嵌入的资源，有什么区别？
+Reshaper找不到代码，看看是路径映射不对，还是版本不对？
+Xamarin Forum password Aa!123456789
+-----------------
+用async修饰一个，这个函数就是异步的了。
+------------------奇怪的问题
+PropertyChanged这个dll。如果不加入，那么这个就不工作。Binding的工作原理到底是什么样的？
+<StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" BindingContext="{x:Reference MyMainPage}">
+<Button x:Name="Images" Text="Image"   Command="{Binding BrowseCommand}" CommandParameter="{x:Static local:Env.Image}"/>
+
+----------------Layout的cycle问题。
+一次Layout，如果设置了子元素的Text,ImageSource属性，会反过头来再次触发一次这个容器的Layout动作。现在的解决方案是，在Layout
+之前，把子元素的所有东西都设置好。等到调用Layout之后，再设置子元素的属性，并在Layout忽略由子元素触发的Layout请求。
+
+但这里有个假定RunPostLayoutTasks是在Layout之后，但这可能会有漏洞，因为实际发现Layout动作是在独立线程的，RunPostLayoutTasks
+会在LayoutChildren之前被调用。先在的解决方案是尽量在自己能控制的线程里面，计算子元素的大小、内容等等。
+但还是假定了LayoutChildren会很快完成。好在这是真的，其次再RunPostLayoutTasks中没什么关键内容
+
+但如果在Layout之前wait一个event,并在LayoutChildren完成时set这个event，或者在Layout完成时主动调用RunPostLayoutTasks
+却影响了Xforms的内部线程逻辑，绘制不成功了。
+
+当前的解决方案，再LayoutChildren完成之后，调用Task.Run(()=>RunPostLayoutTasks(localLayoutId));
+这样保证了在Layout完成之后调用RunPostLayoutTasks，但看起来好像响应性不怎么好。
+
+---------------- DependencyService是不是可以解决文件访问权限的问题？
+
+-----------------行星的速度为什么不会越来越慢，最后掉到太阳上？ 时空扭曲的视频解说。
+
+void RelayoutRoutine(Action action)
+{
+    Scrolled -= GalleryLayout_Scrolled;
+    ScrollToAsync(0, 0, false);
+    int localLayoutId = Pannel.PreLayoutForResizeOrDataChange(Width, Height);
+    action?.Invoke();
+    //TODO 这里也很奇怪，调用ForceLayout之后，这个会马上执行，也就是说ForceLayout是马上执行的。
+    Pannel.RunPostLayoutTasks(localLayoutId);
+    Scrolled += GalleryLayout_Scrolled;
+}
+
+
+
+----------------这个问题Xamarin.Forms.2.3已经解决。但仍然不能使用这种方法去显示图片。当图片很多的时候，这就有问题了。
+WrapLayout, ListView或者其他Layout，如果子项目超过117个，就会出现这个错误。
+怀疑是Layout的过程被重入。但问题是谁在重入？如何能防止这个重入？
+
+现在的解决方案，是创建一个大大的占位符，给用户显示的区域是一个表格布局。当用户滚动scrollView的时候，移动这个表格，同时重新加载
+表格中每一个item的source.
+{"A cycle occurred while laying out the GUI."}
+"Layout cycle detected.  Layout could not complete."
+
+{Windows.UI.Xaml.UnhandledExceptionEventArgs}

@@ -1,0 +1,168 @@
+﻿未来版本规划
+基于命令行的热点实现。去掉服务。
+单独的组网功能。一个人发起，其他人自动扫描发现并连接。只有发起者才创建热点。不要创建很多热点自找麻烦。
+OpenFileDialog.
+
+跨平台
+--Android browser. Android上的文件浏览器。
+--IOS
+
+多设备管理
+--多设备管理里的新交互设计
+--个人云
+
+Backend: ASP.net, node js, mongodb?
+--Authentication, no accept reject is needed. 但仍然需要另存为。可以自动另存到某一目录，甚至可以在这台设备上控制另一台设备存储到什么目录。
+  但其实本质上，不喜欢用户到处乱存储，这会给索引带来麻烦。
+--Discovery
+  不论网络能不能广播，都可以发现。
+--通过Internet 浏览远程设备。
+--通过Internet 下载远程设备的文件。
+  UDP File transfer?
+
+Sync. 
+--FileMonitor?
+
+ 
+内容组织(分类)。
+--内容索引，
+
+
+
+***
+[专利？]现有的广播发现、ping的机制，会导致设备的default ip变成最后收到的那个udp包的ip. 这样等于是选了一个最慢的通路。可以考虑给同一批次
+不同ip发出的online消息设定一个相同的id，如果收到的udp包的id与上一次相同，就不更新了IP地址。
+
+***
+***
+可以考虑改一下SoftAP的实现，不如弹UAC框。这样通过服务启动很麻烦。如果通过UAC的方式，ETW和服务都不需要了，简单很多。
+***
+Android 扫描连接到界面需要有进度。
+***Buffer的机制应该在文件夹或者文件中实现。而且如果父容器做了buffer，这个Item自己就不要做Buffer了。Message是不是要知道自己所属的Item？
+或者，Item应该知道自己的最后一条消息？因为最后一条消息要更新Item的状态。什么情况下Item是不知道自己自己的这一条消息是否是最后一条消息的？
+如果消息不为空，而且TransferState = PostCompleted，那这个消息就是最后一条消息。
+
+﻿***重构
+Item.GetNextMessage可以返回Null，当调用者收到Null的时候，去检查内部状态，如果没出错也没到结尾，再尝试下一条。
+这样还是不能解决ConversationID被文件本身设置一遍，又被DirItem设置一遍的问题，增加一个属性看Item是不是顶层Item?但这个只对容器有意义，一个Item本身为什么要知道这一点？
+这个实现对Buffer有没有帮助？如果在GetNextMessage中改变状态，在GetNextMessageImpl中，只是读取消息，可能有帮助。
+
+
+***已知Bug.
+为什么A连接B，发送一次文件之后，再发送文件对方没有反应？
+A已经连接了B，B反过来请求A的时候，为什么在A一端还看到B请求连接的对话框？
+为什么A连接B已经成功了，还会看到Connect to B Fail的对话框？
+
+看到过几次A发送了Connect消息，但B没有收到的状况。
+看到过A发现了B，但B没有发现A的状况，但实际上APPModel里面有A，好像是设备列表绑定的不对。或者设备列表显示的时候需要刷新一下？
+
+Browse的实现是不是有问题，怎么没看到OnInitRequest调用，如果没有BrowseResponder又是怎么响应的呢？奇怪。
+
+连接的时候IP地址有时候是空，是不是因为没选头像？
+有多个IP地址该怎么连接？现在是取LAN收到广播时候的地址。但这样做不一定对。而且一个Device允许有多个IP地址，也允许建立多个Channel.
+*Channel写的时候会发生异常。需要处理。而且Socket异常之后，整个Framework的重试机制欠缺。是在SocketError的时候，让Device自动尝试重连，
+还是直接报错，让用户手工重连？不管怎么样，重连都会涉及到Recover部分，并且Conversation的状态也要补齐（传输了多少文件？）
+还有确认机制（收到文件回复）。
+*有的时候，文件接收不全，这和上面的接收确认一样。
+
+***AppModel不要混入Environment相关的东西。如果有，可以独立在一个Environment类中。
+
+***Conversation.Recover是个主动行为，而OnRecovered是个被动行为。程序没有退出的时候，Conversation一直都在
+如果一个连接从不可用状态变成可用状态，那会调用OnRecovered. 
+而Recover需要重新发送一下Recover请求，另一端同意这个请求之后，会调用OnRecovered
+
+合适吗？因为不清楚OnRecovered是否需要重新计算Recover请求——应该是不需要的，只是Conversation内部需要记录传输状态，从上一个位置开始就可以了。
+现在的实现还不行，因为现在的实现没有实现记录conversation的位置。特别是那些有进度的Conversation.
+
+***若要实现组播 
+Connection的层面不变？channel的Send(Packet)改成 multicast. 
+对方消息会从UDP port得到，交给AppModel处理，根据ConversationID再次分发，每个Conversation处理收到的消息，和现在的流程基本一致，
+不同在于收到的每个消息，不能假定有顺序,顺序必须自己管理。 
+而且组播端收到文件，是不能Cancel的，Cancel只在自己这一端有效。
+实现组播其实没多大意义。只在局域网中有效，p2p如何处理？
+ItemsSenderRequester requester2 = appmodel.CreateConversation<ItemsSenderRequester>(dev1,dev2);
+
+***是不是应该有个消息集散地？有很多消息，不需要一层一层的传递，所有的Message都有对应的Connection。
+收到消息之后，可以把消息丢到这个地方（连同Connection一起），关注特定消息的人，可以注册观察特定的消息类型的，当特定类型的消息发生时
+那个订阅者就会收到消息。
+其实Connection就是这个集散地。也就是说，上层都可以关注Connection的各种消息。但Connection有些问题。
+例如创建不是马上返回，要先通过Channel发一个ConnectMessage,对方Agree之后才有；被动连接，也是在收到Connect消息之后才有效。
+
+那么Device是否适合做这个集散地呢？
+即使我这边没看到Device,别人主动连接过来我也会收到一个Device的信息。我也可以缓存、管理这个Device.
+Device.Rejected += //主动连接过别人,被拒绝才会触发
+Device.Accepted += //主动连接过别人,被同意才会触发
+Device.PostMessage(protected)
+Device.PostSendable(Protected)
+//Conversation还是不适合在Device中创建，因为Conversation其实可以脱离Device被序列化、反序列化。它只是利用Device的通讯能力
+//Device不需要具备业务管理能力。Device所了解的东西，到Message为止，分发的工作都转交给上层。除掉一些和Device状态相关的消息。
+//Device管理自己的状态，但不管理业务逻辑。
+Conversation cv = Device.CreateConversation()
+cv.Items = items;
+cv.Start()；
+
+所有来的消息，都会转交给Device进行分发。Device会注册到底层的Channel得到的Packet，并负责解析。因为每个Channel会拿一个Device
+所以Channel把消息转交给Device很简单。或者让Device监听Channel的event也可以。
+那么Device自己知不知道自己的状态？ 比如连接中、断开、已经连接。
+
+AppModel的角色何在？
+负责底层的创建Channel,监听Channel。
+Conversation并不适合被Device管理。因为Conversation是属于App的。不管Device在不在，过去的Conversation都应该存在。
+
+
+
+
+**若是个人数据中心， 那么记事本、网页收藏夹等功能也是合理。
+**ScreenCast适用于Conversation的概念吗？中间有多少中转？意义何在？如果开独立端口，会突破现有的结构。现在的结构，适合于交互和传送与交互逻辑有关的数据。
+
+
+///什么时候决定把sendable从List里面移出？如果是Sendable的集合，移除的标准并不相同。普通的Sendable调用一次ToMessage移除
+///而对于ISeqenceSendable，要到全部转换完成才移除。所以把移除的动作委托给Sendable自己去做最合适。
+///ToMessage被调用之前，假定了ISeqenceSendable一定还有内容。
+///传统IO用的是第3,4,5. 通过读出来的值，即EOF来处理。但应该算是比较低级的做法。
+///
+///1.通过ToMessageCompleted event。
+///   这种方法优点是转换完毕的地方不需要自己处理，委托给ISendable了。
+///   缺点是别人好奇是什么时候移除的，而且所有的sendable的子类都要实现这个event. 显示实现的话，看起来很别扭(需要自己增加定义，add和remove)。
+///   如果隐式实现，则必须把这个暴露成public.
+///2.在ToMessage的里面传入lambda表达式
+///   这种方法优点是看起来容易理解，但每个ToMessage，都要重新创建这个表达式，GetNextMessage的调用，都要传递这个表达式。
+///   ToMessage((sequenceSendable)=>list.remove(seqenceSendable)),GetNextMessage要传递这个变量。
+
+
+///3.在ToMessage里面抛出异常，如果这个SequenceSendable已经转化完毕。这个方法有漏洞？抛出异常要移除，但正常的Sendable，不抛出异常也要移除呀
+///4.转化完毕时，ToMessage返回null。这样的缺点是每次都要检查。
+///   对于正常的对象，不会抛出异常。
+///   if(sendable is ISeqenceSendable){
+///     if(message == null) remove()
+///   }else{
+///     remove()
+///   }
+///5.SequenceSendable的ToMessage在完毕后，返回一个EOFMessage。这其实和第四个很相似。也要每次检查。
+
+
+//扫描二维码之后的行为应该是什么样子的？在实际显示在设备列表之前，是不是要先发送一个连接消息过去？因为扫得到，不一定能连上。
+直到对方同意连接了，才真正把设备显示在列表里面。
+1.主动创建Connection。但没办法马上收到Connection，只能启动一个timer,同时等待AppModel的ConnectionReceived事件中,判断
+收到的Connection是不是我尝试的。如果是，就消掉timer.并告知用户对方的反应（同意，拒绝？）
+2.发一个ConnectMessage.这个和上一个方法原理类似。
+PostSendable应该有个超时，如果一个东西多长时间之内没有被发送，应该触发超时消息。
+或者Sendable有个超时回调接口，如果用户设置了，就启动Timer。
+3.启动一个DummyConversation。可以利用Conversation的拒绝、同意、超时机制。
+
+或者此处用一个DummyConversation?但用Conversation实现，会导致
+DummyConversation conversation = app.CreateConversation<DummyConversation>(device);
+conversation.TimeoutSeconds = 30; //30秒内如果收到对方回应，则显示已经连接。
+conversation.Timeout += (cv) =>
+{
+    //TODO 通知用户这个会话已经超时。
+};
+conversation.Start();
+conversation.Agreed += ()=> 
+{
+    DeviceDiscovered(device);
+};
+conversation.Rejected += () =>
+{
+    //TODO 通知用户对方不同意连接。
+};

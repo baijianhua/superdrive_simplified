@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<controls:DialogPage xmlns="http://xamarin.com/schemas/2014/forms"
+                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                     x:Class="SuperDrive.Core.UI.Pages.MainPage"
+                     x:Name="MyMainPage"
+                     xmlns:ui="clr-namespace:SuperDrive.Core.UI"
+                     xmlns:controls="clr-namespace:SuperDrive.Core.UI.Controls;assembly=SuperDrive.Core.UI"
+                     xmlns:pages="clr-namespace:SuperDrive.Core.UI.Pages;assembly=SuperDrive.Core.UI"
+                     BindingContext="{x:Reference MyMainPage}"
+                     >
+        <!--如何才能省略掉外面的页面？现在所以要有里面的页面是因为不能直接重写这个页面的LayoutChildren，因为他还负责管理Dialog-->
+        <pages:MainPageReal HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" x:Name="MainPageContainer"></pages:MainPageReal>
+	<!--<Button Text="Test Large Button"></Button>-->
+</controls:DialogPage>

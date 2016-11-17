@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{99A9AD5A-4E4E-494F-9427-40A1E57DDA08}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SuperDrive.Core</RootNamespace>
+    <AssemblyName>SuperDrive.Core</AssemblyName>
+    <DefaultLanguage>zh-CN</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .NET Framework is automatically included -->
+    <None Include="ClassDiagram1.cd" />
+    <None Include="project.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Business\Browse.cs" />
+    <Compile Include="Business\BrowseRequestUtil.cs" />
+    <Compile Include="Business\BrowseResponseUtil.cs" />
+    <Compile Include="Business\GetItemAgreedMessage.cs" />
+    <Compile Include="Business\HttpDownloader.cs" />
+    <Compile Include="Business\HttpRequestDispatcher.cs" />
+    <Compile Include="Business\PostMessageFailedMessage.cs" />
+    <Compile Include="Enitity\TransferBundle.cs" />
+    <Compile Include="Http\Abstractions\TcpListenerAdapter.cs" />
+    <Compile Include="Http\HttpListener.cs" />
+    <Compile Include="Http\HttpListenerHeaders.cs" />
+    <Compile Include="Http\HttpLIstenerHeaderValueCollection.cs" />
+    <Compile Include="Http\HttpListenerRequest.cs" />
+    <Compile Include="Http\HttpListenerRequestEventArgs.cs" />
+    <Compile Include="Http\HttpListenerRequestExtensions.cs" />
+    <Compile Include="Http\HttpListenerRequestHeaders.cs" />
+    <Compile Include="Http\HttpListenerResponse.cs" />
+    <Compile Include="Http\HttpListenerResponseHeaders.cs" />
+    <Compile Include="Http\HttpMethods.cs" />
+    <Compile Include="Http\HttpResponseStatusCodeExtensions.cs" />
+    <Compile Include="Http\HttpUtility.cs" />
+    <Compile Include="Messages\ConversationTimeoutMessage.cs" />
+    <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="SuperDriveCore.cs" />
+    <Compile Include="Business\BrowseResponder.cs" />
+    <Compile Include="Business\Config.cs" />
+    <Compile Include="Business\Conversation.cs" />
+    <Compile Include="Env.cs" />
+    <Compile Include="Business\Error.cs" />
+    <Compile Include="Business\GetItemsRequester.cs" />
+    <Compile Include="Business\GetItemsResponder.cs" />
+    <Compile Include="Business\Requester.cs" />
+    <Compile Include="Business\Resonder.cs" />
+    <Compile Include="Business\SendItemsRequester.cs" />
+    <Compile Include="Business\SendItemsResponder.cs" />
+    <Compile Include="Channel\ChannelManager.cs" />
+    <Compile Include="Channel\IChannel.cs" />
+    <Compile Include="Channel\Protocol\MessageType.cs" />
+    <Compile Include="Channel\Protocol\Packet.cs" />
+    <Compile Include="Channel\Protocol\PacketHeader.cs" />
+    <Compile Include="Channel\TcpChannel.cs" />
+    <Compile Include="Enitity\AbstractFileItem.cs" />
+    <Compile Include="Enitity\Avatar.cs" />
+    <Compile Include="Enitity\Device.cs" />
+    <Compile Include="Enitity\DeviceType.cs" />
+    <Compile Include="Enitity\DirItem.cs" />
+    <Compile Include="Enitity\FileItem.cs" />
+    <Compile Include="Enitity\IConversational.cs" />
+    <Compile Include="Enitity\Item.cs" />
+    <Compile Include="Enitity\ItemType.cs" />
+    <Compile Include="Enitity\SequencableItem.cs" />
+    <Compile Include="Enitity\TransferState.cs" />
+    <Compile Include="Discovery\DiscoveryType.cs" />
+    <Compile Include="Discovery\Discoverer.cs" />
+    <Compile Include="Discovery\IDiscoveryManager.cs" />
+    <Compile Include="Discovery\LANDiscoverer.cs" />
+    <Compile Include="Support\Consts.cs" />
+    <Compile Include="Support\Extension.cs" />
+    <Compile Include="Http\Helper\BrowseContentHelper.cs" />
+    <Compile Include="Http\Helper\FileHelper.cs" />
+    <Compile Include="Http\Helper\IPowerInfo.cs" />
+    <Compile Include="Http\Helper\IPreference.cs" />
+    <Compile Include="Support\Logger.cs" />
+    <Compile Include="Messages\AbstractPeerMessage.cs" />
+    <Compile Include="Messages\AcceptMessage.cs" />
+    <Compile Include="Messages\BrowseRequestMessage.cs" />
+    <Compile Include="Messages\BrowseResponseMessage .cs" />
+    <Compile Include="Messages\CancelMessage.cs" />
+    <Compile Include="Messages\ConfirmMessage.cs" />
+    <Compile Include="Messages\ConnectMessage.cs" />
+    <Compile Include="Messages\ConversationMessage.cs" />
+    <Compile Include="Messages\DisconnectMessage.cs" />
+    <Compile Include="Messages\GetItemsMessage.cs" />
+    <Compile Include="Messages\HeartbeatMessage.cs" />
+    <Compile Include="Messages\Message.cs" />
+    <Compile Include="Messages\OnlineMessage.cs" />
+    <Compile Include="Messages\OtherItems.cs" />
+    <Compile Include="Messages\Others.cs" />
+    <Compile Include="Messages\RejectMessage.cs" />
+    <Compile Include="Messages\SendItemsMessage.cs" />
+    <Compile Include="Messages\ThumbnailRequestMessage.cs" />
+    <Compile Include="Support\LogTag.cs" />
+    <Compile Include="Support\MTask.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Support\MyStopWatch.cs" />
+    <Compile Include="Support\ParalellTaskPool.cs" />
+    <Compile Include="Support\StringHelper.cs" />
+    <Compile Include="Support\SequencialTaskPool.cs" />
+    <Compile Include="Support\TaskWrapper.cs" />
+    <Compile Include="Support\Util.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\file64.png" />
+    <EmbeddedResource Include="Images\folder64.png" />
+    <EmbeddedResource Include="Images\image64.png" />
+    <EmbeddedResource Include="Images\music64.png" />
+    <EmbeddedResource Include="Images\phone64.png" />
+    <EmbeddedResource Include="Images\phone_add_64.png" />
+    <EmbeddedResource Include="Images\mac64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\file128.png" />
+    <EmbeddedResource Include="Images\folder128.png" />
+    <EmbeddedResource Include="Images\image128.png" />
+    <EmbeddedResource Include="Images\music128.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\movie128.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

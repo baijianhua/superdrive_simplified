@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{129DB168-6DFE-425D-BB72-3480019861C8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SuperDrive.Core</RootNamespace>
+    <AssemblyName>SuperDrive.Core</AssemblyName>
+    <DefaultLanguage>zh-CN</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>Profile111</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Business\AppModel.cs" />
+    <Compile Include="Business\BrowseRequester.cs" />
+    <Compile Include="Business\BrowseResponder.cs" />
+    <Compile Include="Business\Config.cs" />
+    <Compile Include="Business\Conversation.cs" />
+    <Compile Include="Core\ICloneable.cs" />
+    <Compile Include="Library\ArgChecker.cs" />
+    <Compile Include="Library\Env.cs" />
+    <Compile Include="Business\Error.cs" />
+    <Compile Include="Business\GetItemsRequester.cs" />
+    <Compile Include="Business\GetItemsResponder.cs" />
+    <Compile Include="Business\ICancellable.cs" />
+    <Compile Include="Business\ItemReceiverComponent.cs" />
+    <Compile Include="Business\ItemsSender.cs" />
+    <Compile Include="Business\Requester.cs" />
+    <Compile Include="Business\Resonder.cs" />
+    <Compile Include="Business\SendItemsRequester.cs" />
+    <Compile Include="Business\SendItemsResponder.cs" />
+    <Compile Include="Channel\ChannelManager.cs" />
+    <Compile Include="Channel\IChannel.cs" />
+    <Compile Include="Channel\Protocol\MessageType.cs" />
+    <Compile Include="Channel\Protocol\Packet.cs" />
+    <Compile Include="Channel\Protocol\PacketHeader.cs" />
+    <Compile Include="Channel\TcpChannel.cs" />
+    <Compile Include="Common\Preconditions.cs" />
+    <Compile Include="Common\StringHelper.cs" />
+    <Compile Include="Common\Util.cs" />
+    <Compile Include="Core\AbstractFileItem.cs" />
+    <Compile Include="Core\Avatar.cs" />
+    <Compile Include="Core\Device.cs" />
+    <Compile Include="Core\DeviceInfo.cs" />
+    <Compile Include="Core\DeviceType.cs" />
+    <Compile Include="Core\DirItem.cs" />
+    <Compile Include="Core\FileItem.cs" />
+    <Compile Include="Core\IConnection.cs" />
+    <Compile Include="Core\IConversational.cs" />
+    <Compile Include="Core\ISendable.cs" />
+    <Compile Include="Core\ISplittable.cs" />
+    <Compile Include="Core\ItemType.cs" />
+    <Compile Include="Core\SequencableItem.cs" />
+    <Compile Include="Core\TransferState.cs" />
+    <Compile Include="Discovery\DiscoveryType.cs" />
+    <Compile Include="Discovery\IDiscoverer.cs" />
+    <Compile Include="Discovery\IDiscoveryManager.cs" />
+    <Compile Include="Extension\HttpStatusCodeExtension.cs" />
+    <Compile Include="Helper\BrowseContentHelper.cs" />
+    <Compile Include="Helper\IPowerInfo.cs" />
+    <Compile Include="Helper\IPreference.cs" />
+    <Compile Include="Library\Extensions.cs" />
+    <Compile Include="Library\MTask.cs" />
+    <Compile Include="Library\StringHelper.cs" />
+    <Compile Include="Library\TaskPool.cs" />
+    <Compile Include="Library\Timer.cs" />
+    <Compile Include="Library\UDP.cs" />
+    <Compile Include="Messages\AbstractPeerMessage.cs" />
+    <Compile Include="Messages\AcceptMessage.cs" />
+    <Compile Include="Messages\BrowseRequestMessage.cs" />
+    <Compile Include="Messages\BrowseResponseMessage .cs" />
+    <Compile Include="Messages\CancelMessage.cs" />
+    <Compile Include="Messages\ConfirmMessage.cs" />
+    <Compile Include="Messages\ConnectMessage.cs" />
+    <Compile Include="Messages\ConversationMessage.cs" />
+    <Compile Include="Messages\DisconnectMessage.cs" />
+    <Compile Include="Messages\FileDataMessage.cs" />
+    <Compile Include="Messages\GetItemsMessage.cs" />
+    <Compile Include="Messages\HeartbeatMessage.cs" />
+    <Compile Include="Messages\Message.cs" />
+    <Compile Include="Messages\OnlineMessage.cs" />
+    <Compile Include="Messages\OtherItems.cs" />
+    <Compile Include="Messages\Others.cs" />
+    <Compile Include="Messages\RejectMessage.cs" />
+    <Compile Include="Messages\SendItemsMessage.cs" />
+    <Compile Include="Messages\ThumbnailRequestMessage.cs" />
+    <Compile Include="Messages\ThumbnailResponseMessage .cs" />
+    <Compile Include="MISC\ConnectQRCode.cs" />
+    <Compile Include="MISC\Misc.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\packages\NLog.4.3.9\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="PortableLog.Core, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\PortableLog.Core.1.0.2\lib\portable-net45+wp80+win8+wpa81\PortableLog.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

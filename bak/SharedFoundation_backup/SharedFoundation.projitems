@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>0547b7bd-bed5-4e2e-94cd-bc48d0491a64</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>ConnectTo.Foundation</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Business\AppModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Business\BrowseRequester.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Business\BrowseResponder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Business\Config.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Business\Conversation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Business\Error.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Business\GetItemsRequester.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Business\GetItemsResponder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Business\ICancellable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Business\ItemReceiverComponent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Business\SendItemsResponder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Business\SendItemsRequester.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Business\Env.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Business\Requester.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Business\Resonder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Channel\ChannelManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Channel\IChannel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Channel\Protocol\MessageType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Channel\Protocol\Packet.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Channel\Protocol\PacketHeader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Channel\TcpChannel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\AbstractFileItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Avatar.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Device.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\DeviceType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\DirItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\FileItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\IConversational.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\ISendable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\ItemType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\SequencableItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\TransferState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Discovery\DiscoveryType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Discovery\IDiscoverer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Discovery\IDiscoveryManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Discovery\LANDiscoverer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extension\HttpStatusCodeExtension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extension\ProcessExtension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extension\XmlDocumentExtension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helper\BrowseContentHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helper\FileHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helper\IPowerInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helper\IPreference.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Messages\Others.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Messages\AcceptMessage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Messages\BrowseRequestMessage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Messages\BrowseResponseMessage .cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Messages\CancelMessage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Messages\ConfirmMessage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Messages\ConnectMessage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Messages\ConversationMessage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Messages\DisconnectMessage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Messages\HeartbeatMessage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Messages\OnlineMessage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Messages\FileDataMessage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Messages\Message.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Messages\OtherItems.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Messages\RejectMessage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Messages\GetItemsMessage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Messages\SendItemsMessage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Messages\ThumbnailRequestMessage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Messages\ThumbnailResponseMessage .cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MISC\ConnectQRCode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Metrics\Event\MetricsAppEvents.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Metrics\Event\MetricsEvent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Metrics\Event\MetricsUpdateEvent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Metrics\IMetricsManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Metrics\MetricsException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Metrics\MetricsParameter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Metrics\MetricsWrapper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MISC\Misc.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Security\BytesHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Security\ISecureConfig.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Security\ISecureCrypto.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Security\ISecureStorage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Security\ISecurityManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Security\PasswordValidator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Security\SecureConfig.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Security\SecureCrypto.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Security\SecureHead.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Security\SecurePasswordBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Security\SecurityManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Update\UpdateAppInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Update\UpdateManagerBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Update\Xml\LocalFilter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Update\Xml\PublishTarget.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Update\Xml\WebPackage.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)note.txt" />
+  </ItemGroup>
+</Project>
