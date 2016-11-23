@@ -30,7 +30,7 @@ namespace SuperDrive.UWP
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-            var task = e.User.GetPropertyAsync(KnownUserProperties.AccountName).AsTask();
+            //var task = e.User.GetPropertyAsync(KnownUserProperties.AccountName).AsTask();
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
             {
